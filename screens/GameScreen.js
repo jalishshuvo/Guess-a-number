@@ -1,5 +1,7 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { Button, StyleSheet, Text, View } from "react-native";
+import Card from "../components/Card";
+import NumberContainer from "../components/NumberContainer";
 
 // Recursion Function: dont generate everyting when the app load
 const generateRandomBetween = (min, max, exclude) => {
@@ -18,12 +20,30 @@ const GameScreen = (props) => {
     generateRandomBetween(1, 100, props.useChoice)
   );
   return (
-    <View>
-      <Text> </Text>
+    <View style={styles.screen}>
+      <Text> Opponent's Guess </Text>
+      <NumberContainer> {currentGuess} </NumberContainer>
+      <Card style={styles.buttonContainer}>
+        <Button title="LOWER" />
+        <Button title="GREATER" />
+      </Card>
     </View>
   );
 };
 
 export default GameScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    padding: 10,
+    alignItems: "center",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginTop: 20,
+    width: 300,
+    maxWidth: "80%",
+  },
+});
