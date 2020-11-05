@@ -8,9 +8,11 @@ import {
   Keyboard,
   Alert,
 } from "react-native";
+import BodyText from "../components/BodyText";
 import Card from "../components/Card";
 import Input from "../components/Input";
 import NumberContainer from "../components/NumberContainer";
+import TitleText from "../components/TitleText";
 
 import Color from "../constants/color";
 
@@ -66,9 +68,9 @@ const StartGameScreen = (props) => {
       }}
     >
       <View style={styles.screen}>
-        <Text style={styles.title}> Start A New Game </Text>
+        <TitleText style={styles.title}> Start A New Game </TitleText>
         <Card style={styles.inputContainer}>
-          <Text> Seclect a number </Text>
+          <BodyText> Seclect a number </BodyText>
           <Input
             placeholder="number"
             style={styles.input}
@@ -115,6 +117,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     marginVertical: 10,
+    fontFamily: "open-sans-bold",
   },
 
   inputContainer: {

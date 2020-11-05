@@ -75,3 +75,69 @@ making css color variable
 3. useState to track current guess
 
 ## 65. Switching between multiple Screen
+
+## 66. Adding Game features Hints Validations
+
+1. adding function for Lower and greater guss
+
+- bind method
+- useRef Hook
+
+## 67. Checking the win condition with useEffect
+
+- useEffect()
+- GaveOverScreen
+- in App.js --> useState to trac the guessRounds
+- GameScreen -> useState to track the round
+
+## 68. Finishing the Game logic
+
+## 69. Adding Custom fonts
+
+1. install expo-font
+   in App.js
+
+- import \* as Font from 'expo-font'
+- creating fetchFonts function
+- import { AppLoading } from 'expo' : AppLoading helps to load fonts before the app is startd
+- useState for dataLodaed
+- if statement for not loading data
+
+## 70. instruction for install expo-fonts
+
+## 71. A synthetic Cascade custom wrapper components global styles
+
+### Option 1:
+
+1. BodyText Component
+2. TitleText Component
+
+### Option 2:
+
+constants :
+-> default-styles.js
+
+# Adding Image
+
+## 72. Adding Local Image
+
+-GameOverScreen
+
+## 73. Styling Image
+
+## 74. Adding Web Image
+
+# Text Component
+
+## 75. A Closer look at the Text Component
+
+1. nested text inside BodyText
+
+   Note:
+
+-View uses flexbox
+-Text dont use flexbox
+
+## 76. View vs Text a summary
+
+## 77. Building a custom button component
