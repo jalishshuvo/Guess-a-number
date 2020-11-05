@@ -141,3 +141,19 @@ constants :
 ## 76. View vs Text a summary
 
 ## 77. Building a custom button component
+
+## 78. Adding Icons
+
+## 79. Exploring UI libries
+
+## 80. Managing Past Guesses as a list
+
+# Problem
+
+# Not Workig
+
+## 81. Styling List Item
+
+## 82. Flexbox for list
+
+## 83. Using FlatList instead of ScrollView
