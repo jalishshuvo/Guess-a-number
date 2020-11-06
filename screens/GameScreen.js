@@ -7,6 +7,7 @@ import {
   Text,
   View,
   FlatList,
+  Dimensions,
 } from "react-native";
 import Card from "../components/Card";
 import NumberContainer from "../components/NumberContainer";
@@ -14,6 +15,7 @@ import DefaltStyles from "../constants/default-styles";
 import MainButton from "../components/MainButton";
 import { Ionicons } from "@expo/vector-icons";
 import BodyText from "../components/BodyText";
+// import { ScreenOrientation } from "expo-screen-orientation";
 
 // Recursion Function: dont generate everyting when the app load
 const generateRandomBetween = (min, max, exclude) => {
@@ -43,15 +45,34 @@ const renderListItem = (listLength, itemData) => (
 );
 
 const GameScreen = (props) => {
+  // ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
   const initalGuess = generateRandomBetween(1, 100, props.userChoice);
   const [currentGuess, setCurrentGuess] = useState(initalGuess);
 
   const [pastGuesses, setPastGuesses] = useState([initalGuess.toString()]);
+
+  // const [avaiableDeviceWidth, setAvaiableDeviceWidth] = useState(
+  //   Dimensions.get("window").width
+  // );
+  const [avaiableDeviceHeight, setAvaiableDeviceHeight] = useState(
+    Dimensions.get("window").height
+  );
   const currentLow = useRef(1);
   const currentHigh = useRef(100);
 
   // Array destructing is not working
   const { userChoice, onGameOver } = props;
+
+  useEffect(() => {
+    const updateLayout = () => {
+      setAvaiableDeviceHeight(Dimensions.get("window").height);
+    };
+    Dimensions.addEventListener("change", updateLayout);
+
+    return () => {
+      Dimensions.removeEventListener("change", updateLayout);
+    };
+  });
 
   useEffect(() => {
     if (currentGuess === userChoice) {
@@ -89,6 +110,34 @@ const GameScreen = (props) => {
       ...curPastGuesses,
     ]);
   };
+
+  if (avaiableDeviceHeight < 500) {
+    return (
+      <View style={styles.screen}>
+        <Text style={DefaltStyles.title}> Opponent's Guess </Text>
+
+        <Card style={styles.controls}>
+          <MainButton onPress={nextGuessHandler.bind(this, "lower")}>
+            {/* LOWER */}
+            <Ionicons name="md-remove-circle" size={24} color="white" />
+          </MainButton>
+          <NumberContainer> {currentGuess} </NumberContainer>
+          <MainButton onPress={nextGuessHandler.bind(this, "greater")}>
+            {/* GREATER */}
+            <Ionicons name="ios-add-circle" size={24} color="white" />
+          </MainButton>
+        </Card>
+        <View style={styles.listContainer}>
+          <FlatList
+            keyExtractor={(item) => item}
+            data={pastGuesses}
+            renderItem={renderListItem.bind(this, pastGuesses.length)}
+            contentContainerStyle={styles.list}
+          />
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.screen}>
@@ -132,13 +181,22 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
-    marginTop: 20,
-    width: 300,
-    maxWidth: "80%",
+    // marginTop: 20,
+    // marginTop: Dimensions.get("window").height > 600 ? 20 : 10,
+    width: 400,
+    maxWidth: "90%",
+  },
+
+  controls: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    width: "80%",
   },
 
   listContainer: {
     flex: 1,
+    width: Dimensions.get("window").width > 350 ? "60%" : "80%",
     width: "60%",
   },
 
