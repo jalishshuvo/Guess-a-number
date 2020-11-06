@@ -148,12 +148,17 @@ constants :
 
 ## 80. Managing Past Guesses as a list
 
-# Problem
-
-# Not Workig
-
 ## 81. Styling List Item
 
-## 82. Flexbox for list
+## 82. ScrollView Flexbox for list
 
-## 83. Using FlatList instead of ScrollView
+## 83. FlatList instead of ScrollView
+
+## 84. Wrap up
+
+1. FlatList takes 3 props:
+
+- data
+- renderItem
+- keyExtractor : for better rendering list
+- contentContainerStyle: for styling
